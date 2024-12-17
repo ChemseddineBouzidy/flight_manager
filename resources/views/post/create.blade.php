@@ -88,28 +88,12 @@
               </div> 
               <div class="mb-5">
                 <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Arriving time :</label>
-                <input type="time" name="arriving_time" id="arriving" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com"  />
+                <input type="time" name="arriving_time"  id="arriving" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com"  />
               </div> 
-              {{-- <script>
-
-                // Get the checkboxes
-                function addText() {
-                    const input = document.getElementById("arriving");
-                    const inputValue = input.value;
-                    console.log(inputValue);
-        
-                    const input2 = document.getElementById("departing");
-                    const input2Value = input2.value;
-                    console.log(input2Value);
-                    var calc = inputValue - input2Value 
-                    console.log(calc);
-                }
-         
-
-            </script> --}}
+      {{-- calculet  diffMinutes (12:00) from inputs time --}}
             <script>
                 // Function to calculate the time difference
-                function addText() {
+                function updateTimeDifference() {
                     const departing = document.getElementById("departing").value;
                     const arriving = document.getElementById("arriving").value;
             
@@ -119,23 +103,32 @@
                         const arrivingMinutes = toMinutes(arriving);
                         
                         // Calculate difference in minutes (departing - arriving)
-                        const diffMinutes = departingMinutes - arrivingMinutes;
-                        console.log(`Difference in minutes: ${diffMinutes}`);
+                        const diffMinutes = Math.abs(departingMinutes - arrivingMinutes);
+            
+                        // Display the result in the "Time Difference" input field
+                        document.getElementById("time-difference").value = diffMinutes;
                     } else {
-                        console.log("Please enter both times.");
+                        // If one of the times is missing, clear the result field
+                        document.getElementById("time-difference").value = '';
                     }
                 }
             
                 // Convert HH:MM time string to minutes
                 function toMinutes(time) {
                     const [hours, minutes] = time.split(':').map(Number);
-                    return (-1) * hours ;
+                    return hours ;
                 }
+            
+                // Add event listeners to the time inputs
+                document.getElementById("departing").addEventListener("input", updateTimeDifference);
+                document.getElementById("arriving").addEventListener("input", updateTimeDifference);
             </script>
               <div class="mb-5">
-                <input type="button" onclick="addText()" value="aa">
+
                 <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">duration :</label>
-                <input type="text" name="duration" id="durationcalc" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com"  />
+                <input type="text" id="time-difference" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" readonly />
+
+                <input type="text" name="duration" id="durationCALC" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com"  />
               </div> 
               <div class="mb-5">
                 <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">has_wifi :</label>
