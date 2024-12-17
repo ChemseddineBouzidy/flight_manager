@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FlightRequest;
 use App\Models\flight;
 use Illuminate\Http\Request;
 
@@ -25,6 +26,7 @@ class FlightController extends Controller
     public function create()
     {
         //
+        return view("post.create");
     }
 
     /**
@@ -33,9 +35,18 @@ class FlightController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(FlightRequest $request)
     {
-        //
+          // Validate the form input
+          $formFields = $request->validated();
+          $fileName =$request->file('imageAirline' )->store('flights','public');
+          $fileName =$request->file('imageCity')->store('flightscitys','public');
+          $formFields['imageAirline'] = $fileName;
+         // Insert data into the database using Eloquent       
+         $formFields['imageCity'] = $fileName;
+         flight::create($formFields);
+         
+         return redirect()->route('post.create' )->with('success','Votre compte est ' );
     }
 
     /**

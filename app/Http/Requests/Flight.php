@@ -24,17 +24,9 @@ class Flight extends FormRequest
     public function rules()
     {
         return [
-            'departing_time' => 'required',
-            'arriving_time' => 'required',
-            'duration' => 'required',
-            'has_wifi' => 'required',   
-            'is_direct' => 'required|image',
+           
 
-            $table->DateTime('departing_time');
-            $table->DateTime('arriving_time');
-            $table->string('duration');
-            $table->boolean('has_wifi');
-            $table->boolean('is_direct');
+         
         ];
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FlightController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('post.create');
-});
+
+// create une flight
+Route::get('/post/create', [FlightController::class, 'create'])->name('post.create');
+Route::post('/post/store', [FlightController::class, 'store'])->name('post.store');
