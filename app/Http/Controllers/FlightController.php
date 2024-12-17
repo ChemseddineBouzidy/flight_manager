@@ -15,8 +15,10 @@ class FlightController extends Controller
      */
     public function index()
     {
-        //
+        $flights=flight::all(); 
+        return view("post.index",compact('flights'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -40,7 +42,7 @@ class FlightController extends Controller
           // Validate the form input
           $formFields = $request->validated();
           $fileName =$request->file('imageAirline' )->store('flights','public');
-          $fileName =$request->file('imageCity')->store('flightscitys','public');
+          $fileName =$request->file('imageCity')->store('flights','public');
           $formFields['imageAirline'] = $fileName;
          // Insert data into the database using Eloquent       
          $formFields['imageCity'] = $fileName;
