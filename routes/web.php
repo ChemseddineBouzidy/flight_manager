@@ -19,3 +19,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/post/create', [FlightController::class, 'create'])->name('post.create');
 Route::post('/post/store', [FlightController::class, 'store'])->name('post.store');
 Route::get('/post/index', [FlightController::class, 'index'])->name('post.index');
+Route::get('/', [FlightController::class, 'index'])->name('post.index');

@@ -14,10 +14,10 @@
 <body>
     @include('partials.nav')
     <main>
-        <div class="container">       
-            {{$slot}}
-        </div>
-
+     
+        <div class="container mx-auto ">
+            <!-- ... -->   {{$slot}}
+          </div>
     </main>
     @include('partials.footer')
 
