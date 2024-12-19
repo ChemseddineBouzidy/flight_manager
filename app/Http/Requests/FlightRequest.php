@@ -35,6 +35,7 @@ class FlightRequest extends FormRequest
             'is_direct' => 'required',
             'imageCity'=> 'required',
             'pilot_id'=> 'required',
+            'price'=> 'required',
             // 'pilot_id' => 'required|exists:pilots,availability|1'
         ];
     }

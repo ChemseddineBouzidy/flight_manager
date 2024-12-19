@@ -114,7 +114,12 @@
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Arriving time en hour" />
         </div>
-
+        <div class="mb-5">
+          <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price  :</label>
+          <input type="number" name="price" id="arriving"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Arriving time en hour" />
+        </div>
         
     
       </div>
@@ -129,7 +134,7 @@
           
           <div class="inline">
             <label for="text" class=" inline-block mb-2 text-sm font-medium text-gray-900 dark:text-white">This plane has wifi :</label>
-            <label for="text" class="ml-48 mb-2 text-sm font-medium text-gray-900 dark:text-white">This plane has iscal :</label>
+            <label for="text" class="ml-28 mb-2 text-sm font-medium text-gray-900 dark:text-white">This plane has iscal :</label>
           </div>
           </div>
         <div class="mb-5">      
@@ -196,7 +201,7 @@
         
 
   <select id="countries" name="pilot_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-    <option selected>Choose a Pilot</option>
+    
     @foreach($Pilots as $Pilot)
     @if ($Pilot->availability === 0)
     <option value="{{$Pilot->id}}">{{$Pilot->name}}</option>

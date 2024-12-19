@@ -17,14 +17,28 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-
+Route::get('/Flight/All', [FlightController::class, 'all'])->name('Flight.All');
 Route::resource('Flight', FlightController::class);
 Route::resource('Pilot', controller: PilotController::class);
-// Route::resource('login', controller: LoginController::class);
-// Route::get('/Flight/{id}', [FlightController::class,'show'])->where('id','\d+')  ->name('post.show');
-// Show login form
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Route::get('/login', [LoginController::class, 'show'])->name('login');
-// Handle login
 Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
-// Logout
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');

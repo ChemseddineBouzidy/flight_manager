@@ -295,7 +295,7 @@ body { background: var(--white); }
   transition: var(--transition);
 }
 
-.social-link:is(:hover, :focus) { background: hsla(0, 0%, 100%, 0.2); }
+.social-link:is(:hover, :focus) { background: hsla(0, 1%, 61%, 0.2); }
 
 .header .btn { --padding: 4px 20px; }
 

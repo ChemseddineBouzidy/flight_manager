@@ -20,7 +20,8 @@ class flight extends Model
         "has_wifi",
         "is_direct",
         "imageCity",
-        "pilot_id"
+        "pilot_id",
+        "price",
 
         
 

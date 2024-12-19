@@ -38,7 +38,7 @@
         <!-- Brand -->
         <div class="flex-shrink-0">
             <a
-            href="https://kamona-wd.github.io/kwd-dashboard/"
+            href="{{ route('Flight.index') }}"
             class="inline-block text-xl font-bold tracking-wider text-indigo-700 uppercase dark:text-light w-32"
             >
             <img src="{{ asset('logo.png') }}" alt="" srcset="">

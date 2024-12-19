@@ -110,8 +110,9 @@
 
           </ul>
 
-          <button class="btn btn-primary">More destintion</button>
-
+          <a type="button" href="{{route('Flight.All')}}" class="btn btn-primary " style="text-align:center" value="More destintion"> 
+            More destintion
+          </a>
         </div>
       </section>
 
@@ -225,14 +226,14 @@
                   </div>
 
                   <p class="price">
-                    $750
+                    ${{$flight->price}}
                     <span>/ per person</span>
                   </p>
 
-                  <button class="btn btn-secondary" href="{{route('Flight.show',$flight->id)}}">Book Now</button>
+                  <a  class="btn btn-secondary" href="{{route('Flight.show',$flight->id)}}">Book Now</a>
                  
                 </div>
-                <a href="{{route('Flight.show',$flight->id)}}">a</a>
+
               </div>
             </li>
 
