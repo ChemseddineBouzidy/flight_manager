@@ -375,7 +375,7 @@ body { background: var(--white); }
 \*-----------------------------------*/
 
 .hero {
-  background-image: url("../images/hero-banner.jpg");
+  background-image: url("../images/hero.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -1295,4 +1295,9 @@ address {
 
   .container { max-width: 1180px; }
 
+}
+.imageAirline img{
+  width: 200px;
+  height: 100px;
+margin: auto;
 }

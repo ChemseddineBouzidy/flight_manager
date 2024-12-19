@@ -4,93 +4,73 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\FlightRequest;
 use App\Models\flight;
+use App\Models\Pilot;
 use Illuminate\Http\Request;
 
 class FlightController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        $flights=flight::all(); 
-        return view("post.index",compact('flights'));
+        // $flights=flight::all(); 
+         $flights = flight::paginate(11);
+        return view("Flight.index",compact('flights'));
     }
 
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         //
-        return view("post.create");
+        $Pilots=Pilot::all(); 
+        return view("Flight.create",compact("Pilots"));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(FlightRequest $request)
+    public function store(FlightRequest $request, Pilot $pilot)
     {
+          // Check if the pilot's availability is 1
+    $pilot = Pilot::find($request->pilot_id);
+
+    if ($pilot && $pilot->availability == 1) {
+        // Return an error response or redirect back if the pilot is not available
+        return redirect()->back()->with('error', 'This pilot is currently unavailable.');
+    }
+ 
           // Validate the form input
           $formFields = $request->validated();
           $fileName =$request->file('imageAirline' )->store('flights','public');
-          $fileName =$request->file('imageCity')->store('flights','public');
+          $fileNamee =$request->file('imageCity')->store('flights','public');
           $formFields['imageAirline'] = $fileName;
          // Insert data into the database using Eloquent       
-         $formFields['imageCity'] = $fileName;
+         $formFields['imageCity'] = $fileNamee;
          flight::create($formFields);
-         
-         return redirect()->route('post.create' )->with('success','Votre compte est ' );
+         $pilot->availability = 1;
+         $pilot->save();
+         return redirect()->route('Flight.create' )->with('success','Votre compte est ' );
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\flight  $flight
-     * @return \Illuminate\Http\Response
-     */
-    public function show(flight $flight)
+    
+    public function show(flight $Flight )
     {
-        //
+        
+        return view('Flight.show', compact('Flight'));
+       
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\flight  $flight
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function edit(flight $flight)
     {
         //
+         
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\flight  $flight
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function update(Request $request, flight $flight)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\flight  $flight
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(flight $flight)
     {
         //

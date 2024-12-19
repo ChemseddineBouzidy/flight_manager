@@ -20,6 +20,7 @@ class flight extends Model
         "has_wifi",
         "is_direct",
         "imageCity",
+        "pilot_id"
 
         
 
@@ -27,5 +28,8 @@ class flight extends Model
     public function getRouteKeyName()
     {
         return 'id';
+    }
+    public function pilots(){
+        return $this->belongsTo(Pilot::class,'pilot_id',);
     }
 }

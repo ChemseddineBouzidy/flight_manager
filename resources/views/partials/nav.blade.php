@@ -39,9 +39,9 @@
         <div class="flex-shrink-0">
             <a
             href="https://kamona-wd.github.io/kwd-dashboard/"
-            class="inline-block text-xl font-bold tracking-wider text-indigo-700 uppercase dark:text-light"
+            class="inline-block text-xl font-bold tracking-wider text-indigo-700 uppercase dark:text-light w-32"
             >
-            K-WD
+            <img src="{{ asset('logo.png') }}" alt="" srcset="">
             </a>
         </div>
         <div class="flex flex-col items-center justify-center flex-1 space-y-4">

@@ -51,7 +51,7 @@
   @endif
 
 
-  <form class="p-11 bg-light" method="POST" action="{{ route('post.store') }}" enctype="multipart/form-data">
+  <form class="p-11 bg-light" method="POST" action="{{ route('Flight.store') }}" enctype="multipart/form-data">
     @csrf
     <div class="flex gap-[20px] ">
       <div class="w-2/4 w-full">
@@ -59,7 +59,7 @@
           <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">from :</label>
           <input type="text" name="from_city" id="text"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="name@flowbite.com" />
+            placeholder=" City Arriving" />
         </div>
    
 
@@ -67,7 +67,7 @@
           <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Airline :</label>
           <input type="text" name="airline" id="text"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="name@flowbite.com" />
+            placeholder="City Departing" />
         </div>
         <div class="mb-5">
 
@@ -104,7 +104,7 @@
             :</label>
           <input type="time" name="departing_time" id="departing"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="name@flowbite.com" />
+            placeholder="Departing time en hour" />
 
 
         </div>
@@ -112,7 +112,7 @@
           <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Arriving time :</label>
           <input type="time" name="arriving_time" id="arriving"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="name@flowbite.com" />
+            placeholder="Arriving time en hour" />
         </div>
 
         
@@ -123,13 +123,13 @@
           <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">To :</label>
           <input type="text" name="to_city" id="text"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="name@flowbite.com" />
+            placeholder="City Arriving" />
         </div>
         <div class="">
           
           <div class="inline">
-            <label for="text" class=" inline-block mb-2 text-sm font-medium text-gray-900 dark:text-white">has_wifi :</label>
-            <label for="text" class="ml-48 mb-2 text-sm font-medium text-gray-900 dark:text-white">is_direct :</label>
+            <label for="text" class=" inline-block mb-2 text-sm font-medium text-gray-900 dark:text-white">This plane has wifi :</label>
+            <label for="text" class="ml-48 mb-2 text-sm font-medium text-gray-900 dark:text-white">This plane has iscal :</label>
           </div>
           </div>
         <div class="mb-5">      
@@ -190,7 +190,25 @@
 
         </div>
        
+        <div class="my-5">
+
+          <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select Pilot :</label>
         
+
+  <select id="countries" name="pilot_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+    <option selected>Choose a Pilot</option>
+    @foreach($Pilots as $Pilot)
+    @if ($Pilot->availability === 1)
+    <option value="{{$Pilot->id}}">{{$Pilot->name}}</option>
+    @else
+        NO one
+    @endif
+    
+@endforeach
+  </select>
+
+
+        </div>
        
       </div>
 

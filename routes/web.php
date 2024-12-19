@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FlightController;
+use App\Http\Controllers\PilotController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,8 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-// create une flight
-Route::get('/post/create', [FlightController::class, 'create'])->name('post.create');
-Route::post('/post/store', [FlightController::class, 'store'])->name('post.store');
-Route::get('/post/index', [FlightController::class, 'index'])->name('post.index');
-Route::get('/', [FlightController::class, 'index'])->name('post.index');
+
+Route::resource('Flight', FlightController::class);
+Route::resource('Pilot', controller: PilotController::class);
+// Route::get('/Flight/{id}', [FlightController::class,'show'])->where('id','\d+')  ->name('post.show');

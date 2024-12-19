@@ -34,6 +34,8 @@ class FlightRequest extends FormRequest
             'has_wifi' => 'required',   
             'is_direct' => 'required',
             'imageCity'=> 'required',
+            'pilot_id'=> 'required',
+            // 'pilot_id' => 'required|exists:pilots,availability|1'
         ];
     }
 }
