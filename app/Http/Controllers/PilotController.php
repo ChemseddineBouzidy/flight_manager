@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class PilotController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth')->except(['show','','']);
+        // $this->middleware('auth')->only(['show']);
+    }
     /**
      * Display a listing of the resource.
      *

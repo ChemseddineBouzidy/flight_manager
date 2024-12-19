@@ -198,7 +198,7 @@
   <select id="countries" name="pilot_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
     <option selected>Choose a Pilot</option>
     @foreach($Pilots as $Pilot)
-    @if ($Pilot->availability === 1)
+    @if ($Pilot->availability === 0)
     <option value="{{$Pilot->id}}">{{$Pilot->name}}</option>
     @else
         NO one

@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 
 class FlightController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth')->except(['show','','']);
+        // $this->middleware('auth')->only(['show']);
+    }
 
     public function index()
     {
@@ -28,9 +32,9 @@ class FlightController extends Controller
 
     public function store(FlightRequest $request, Pilot $pilot)
     {
-          // Check if the pilot's availability is 1
-    $pilot = Pilot::find($request->pilot_id);
-
+          //Recover pilot id
+         $pilot = Pilot::find($request->pilot_id);
+        // Check availability pilot
     if ($pilot && $pilot->availability == 1) {
         // Return an error response or redirect back if the pilot is not available
         return redirect()->back()->with('error', 'This pilot is currently unavailable.');
@@ -46,6 +50,7 @@ class FlightController extends Controller
          flight::create($formFields);
          $pilot->availability = 1;
          $pilot->save();
+        //  dd($pilot);
          return redirect()->route('Flight.create' )->with('success','Votre compte est ' );
     }
 
