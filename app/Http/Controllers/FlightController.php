@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 class FlightController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth')->except(['show','index','']);
+        $this->middleware('auth')->except(['show','index','all']);
         // $this->middleware('auth')->only(['show']);
     }
 

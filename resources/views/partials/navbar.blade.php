@@ -66,7 +66,7 @@
 
         </nav>
 
-        <button class="btn btn-primary">Book Now</button>
+        <a class="btn btn-primary" href="{{ route('login') }}">Login </a>
 
       </div>
     </div>

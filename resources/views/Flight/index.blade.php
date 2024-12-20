@@ -33,7 +33,7 @@
           <div class="btn-group">
             <button class="btn btn-primary">Learn more</button>
 
-            <button class="btn btn-secondary">Book now</button>
+            <a class="btn btn-secondary" href="{{route('Flight.All')}}">Book now</a>
           </div>
 
         </div>
@@ -246,7 +246,7 @@
         
        
           
-          <button class="btn btn-primary">View All Packages</button>
+          <a class="btn btn-primary" style="text-align:center" href="{{route('Flight.All')}}">View All Packages</a>
 
         </div>
       </section>
