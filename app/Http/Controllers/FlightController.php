@@ -75,19 +75,40 @@ class FlightController extends Controller
  
     public function edit(flight $flight)
     {
-        //
+        return view("Flight.edit",compact("flight"));
+
          
     }
 
  
     public function update(Request $request, flight $flight)
     {
-        //
+        $formFields = $request->validated();
+
+        //Hash
+        $formFields['password'] = Hash::make($request->password);
+         
+       //  $fileName =$request->file('image')->store('profile','public');
+         $this->uploadImage($request,$formFields);
+        
+           $profile->fill($formFields)->save();
+        
+           // $profile->update($formFields);
+           return to_route('profiles.show',$profile->id)->with('success','le profile a ete bien Modifier');
     }
 
 
     public function destroy(flight $flight)
     {
-        //
+        $flight->delete();
+
+        return to_route('Flight.list')->with('danger','le profile a ete bien supprimer');
+    }
+    public function list()
+    {
+ 
+         $flights = flight::paginate(1);
+        return view("Flight.list",compact('flights'));
+ 
     }
 }
