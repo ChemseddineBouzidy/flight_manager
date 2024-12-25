@@ -73,36 +73,39 @@ class FlightController extends Controller
     }
 
  
-    public function edit(flight $flight)
+    public function edit(flight $Flight)
     {
-        return view("Flight.edit",compact("flight"));
+        return view("Flight.edit",compact("Flight"));
 
          
     }
 
  
-    public function update(Request $request, flight $flight)
+
+    public function update(FlightRequest $request,flight $Flight)
     {
         $formFields = $request->validated();
 
-        //Hash
-        $formFields['password'] = Hash::make($request->password);
-         
-       //  $fileName =$request->file('image')->store('profile','public');
-         $this->uploadImage($request,$formFields);
-        
-           $profile->fill($formFields)->save();
-        
-           // $profile->update($formFields);
-           return to_route('profiles.show',$profile->id)->with('success','le profile a ete bien Modifier');
+    //     $fileName =$request->file('imageAirline' )->store('flights','public');
+    //     $fileNamee =$request->file('imageCity')->store('flights','public');
+    //     $formFields['imageAirline'] = $fileName;
+    //    // Insert data into the database using Eloquent       
+    //    $formFields['imageCity'] = $fileNamee;
+      
+       $this->uploadImage($request,$formFields);
+       $this->uploadImageAirline($request,$formFields);
+
+    //  dd($formFields);
+        // $flight->fill($formFields)->save();
+        $Flight->update($formFields);
+        return to_route('Flight.show',$Flight->id)->with('success','le profile a ete bien Modifier');
     }
 
-
-    public function destroy(flight $flight)
+    public function destroy(flight $Flight)
     {
-        $flight->delete();
+        $Flight->delete();
 
-        return to_route('Flight.list')->with('danger','le profile a ete bien supprimer');
+        return to_route('Flight.list',$Flight->id)->with('danger','le profile a ete bien supprimer');
     }
     public function list()
     {
@@ -111,4 +114,21 @@ class FlightController extends Controller
         return view("Flight.list",compact('flights'));
  
     }
+    public function uploadImage(FlightRequest $request,array &$formFields){
+        unset($formFields['imageCity']);
+        if($request->hasFile('imageCity')){
+            $formFields['imageCity'] = $request->file('imageCity')->store('profile','public');
+        }
+
+
+    }
+    public function uploadImageAirline(FlightRequest $request,array &$formFields){
+        unset($formFields['imageAirline']);
+        if($request->hasFile('imageAirline')){
+            $formFields['imageAirline'] = $request->file('imageAirline')->store('profile','public');
+        }
+
+
+    }
 }
+

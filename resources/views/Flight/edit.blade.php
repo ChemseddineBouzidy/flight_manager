@@ -49,25 +49,29 @@
       </div>
     </div>
     @endif
+    <h1></h1>
   
-  
-    <form class="p-11 bg-light" method="POST" action="{{ route('Flight.store') }}" enctype="multipart/form-data">
-      @csrf
+    <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Update your Information</h1>
+
+    <form method="POST" action="{{route('Flight.update',$Flight->id)}}" enctype="multipart/form-data">
+    {{-- <form class="p-11 bg-light" method="POST" action="{{route('Flight.update',$flight->id)}}" enctype="multipart/form-data"> --}}
+        @csrf
+        @method('PUT')
       <div class="flex gap-[20px] ">
         <div class="w-2/4 w-full">
           <div class="mb-5">
             <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">from :</label>
-            <input type="text" name="from_city" id="text"
+            <input type="text" name="from_city" id="text"  value="{{old('from_city',$Flight->from_city)}}"
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder=" City Arriving" />
+               />
           </div>
-     
+         
   
           <div class="mb-5">
             <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Airline :</label>
             <input type="text" name="airline" id="text"
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="City Departing" />
+              placeholder="City Departing" value="{{old('from_city',$Flight->airline)}}"/>
           </div>
           <div class="mb-5">
   
@@ -102,7 +106,7 @@
           <div class="mb-5">
             <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Departing time
               :</label>
-            <input type="time" name="departing_time" id="departing"
+            <input type="time" name="departing_time" id="departing" value="{{old('departing_time',$Flight->departing_time)}}"
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Departing time en hour" />
   
@@ -110,13 +114,13 @@
           </div>
           <div class="mb-5">
             <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Arriving time :</label>
-            <input type="time" name="arriving_time" id="arriving"
+            <input type="time" name="arriving_time" id="arriving" value="{{old('arriving_time',$Flight->arriving_time)}}"
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Arriving time en hour" />
           </div>
           <div class="mb-5">
             <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price  :</label>
-            <input type="number" name="price" id="arriving"
+            <input type="number" name="price" id="arriving" value="{{old('price',$Flight->price)}}"
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Arriving time en hour" />
           </div>
@@ -126,7 +130,7 @@
         <div class="w-2/4  w-full ml-11 ">
           <div class="mb-5">
             <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">To :</label>
-            <input type="text" name="to_city" id="text"
+            <input type="text" name="to_city" id="text" value="{{old('to_city',$Flight->to_city)}}"
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="City Arriving" />
           </div>
@@ -140,7 +144,7 @@
           <div class="mb-5">      
             {{-- has_wifi : --}}
             <div class="flex items-center mb-4">
-              <input id="checkbox1" type="checkbox" value=1 name="has_wifi"
+              <input id="checkbox1" type="checkbox" value=1 name="has_wifi" 
                 class="w-4  h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
               <label for="default-checkbox" class="ms-2 mx-4 text-sm font-medium text-gray-900 dark:text-gray-300">Yes</label>          
               <input id="checkbox2" type="checkbox" name="has_wifi" value=0
@@ -149,7 +153,7 @@
            
               {{-- is_direct --}}
               <div class="flex items-center ml-36">           
-               <input id="checkbox3" type="checkbox" value=1 name="is_direct"
+               <input id="checkbox3" type="checkbox" value=1 name="is_direct" 
                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                <label for="default-checkbox" class="ms-2 mx-4 text-sm font-medium text-gray-900 dark:text-gray-300">Yes</label>
                <input id="checkbox4" type="checkbox" name="is_direct" value=0
@@ -189,29 +193,17 @@
           <div class="my-5">
   
             <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">duration :</label>
-            <input type="text" name="duration" id="time-difference"
+            <input type="text" name="duration" id="time-difference" value="{{old('duration',$Flight->duration)}}"
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               readonly />
   
           </div>
-         
           <div class="my-5">
   
-            <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select Pilot :</label>
-          
-  
-    <select id="countries" name="pilot_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-      
-      {{-- @foreach($Pilots as $Pilot)
-      @if ($Pilot->availability === 0)
-      <option value="{{$Pilot->id}}">{{$Pilot->name}}</option>
-      @else
-          NO one
-      @endif
-      
-  @endforeach --}}
-    </select>
-  
+            <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">pilot_id :</label>
+            <input type="text" name="pilot_id" id="time-difference" value="{{old('pilot_id',$Flight->pilot_id)}}"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              readonly />
   
           </div>
          

@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/Flight/list', [FlightController::class, 'list'])->name('Flight.list');
-
 Route::get('/Flight/All', [FlightController::class, 'all'])->name('Flight.All');
 Route::resource('Flight', FlightController::class);
 Route::resource('Pilot',  PilotController::class);
