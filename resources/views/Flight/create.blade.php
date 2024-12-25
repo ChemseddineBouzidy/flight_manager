@@ -50,6 +50,7 @@
   </div>
   @endif
 
+  <h1 class="my-4 mx-auto text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Create des vols</h1>
 
   <form class="p-11 bg-light" method="POST" action="{{ route('Flight.store') }}" enctype="multipart/form-data">
     @csrf
@@ -203,7 +204,7 @@
   <select id="countries" name="pilot_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
     
     @foreach($Pilots as $Pilot)
-    @if ($Pilot->availability === 0)
+    @if ($Pilot->availability === 1)
     <option value="{{$Pilot->id}}">{{$Pilot->name}}</option>
     @else
         NO one

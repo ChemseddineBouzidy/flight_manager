@@ -1,5 +1,15 @@
 <x-dashbord title=List>
+    <style>
+        svg {
+            stroke: rgb(11 11 11);
+                           }
+       </style>
     <!-- component -->
+    <div class="items-center justify-center ">
+
+    </div>
+    <h1 class="my-4 mx-auto text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Listes des vols</h1>
+
     <div class="  items-center justify-center bg-light">
         <div class="p-6 overflow-hidden px-0">
             <table class="w-full min-w-max table-auto text-left">

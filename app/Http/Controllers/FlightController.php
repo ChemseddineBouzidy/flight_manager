@@ -18,12 +18,10 @@ class FlightController extends Controller
 
     public function index()
     {
-        // $flights=flight::all(); 
+
          $flights = flight::paginate(11);
         return view("Flight.index",compact('flights'));
-        // return view()->firs(['Flight.index', 'Flight.all', 'home'],compact('flights') );
-        // return View::first(['Flight.index', 'Flight.All'], compact('flights'));
-        // return view('Flight.All',compact('flights'));
+
     }
     public function All()
     {
@@ -40,12 +38,12 @@ class FlightController extends Controller
        
     }
 
-    public function store(FlightRequest $request, Pilot $pilot)
+    public function store(FlightRequest $request, Pilot $pilot,flight $flight)
     {
           //Recover pilot id
          $pilot = Pilot::find($request->pilot_id);
         // Check availability pilot
-    if ($pilot && $pilot->availability == 1) {
+        if ($pilot && $pilot->availability == 0) {
         // Return an error response or redirect back if the pilot is not available
         return redirect()->back()->with('error', 'This pilot is currently unavailable.');
     }
@@ -58,9 +56,11 @@ class FlightController extends Controller
          // Insert data into the database using Eloquent       
          $formFields['imageCity'] = $fileNamee;
          flight::create($formFields);
-         $pilot->availability = 1;
+        
+         $pilot->availability = 0;
          $pilot->save();
-        //  dd($pilot);
+       
+        
          return redirect()->route('Flight.create' )->with('success','Votre compte est ' );
     }
 
@@ -75,7 +75,8 @@ class FlightController extends Controller
  
     public function edit(flight $Flight)
     {
-        return view("Flight.edit",compact("Flight"));
+        $Pilots=Pilot::all(); 
+        return view("Flight.edit",compact("Flight",'Pilots'));
 
          
     }
@@ -98,7 +99,7 @@ class FlightController extends Controller
     //  dd($formFields);
         // $flight->fill($formFields)->save();
         $Flight->update($formFields);
-        return to_route('Flight.show',$Flight->id)->with('success','le profile a ete bien Modifier');
+        return to_route('Flight.list')->with('success','le profile a ete bien Modifier');
     }
 
     public function destroy(flight $Flight)
@@ -110,7 +111,7 @@ class FlightController extends Controller
     public function list()
     {
  
-         $flights = flight::paginate(1);
+         $flights = flight::paginate(11);
         return view("Flight.list",compact('flights'));
  
     }

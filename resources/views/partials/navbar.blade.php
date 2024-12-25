@@ -46,7 +46,7 @@
           <ul class="navbar-list">
 
             <li>
-              <a href="#home" class="navbar-link" data-nav-link>home</a>
+              <a href="{{ route('Flight.index') }}" class="navbar-link" data-nav-link>home</a>
             </li>
         
 

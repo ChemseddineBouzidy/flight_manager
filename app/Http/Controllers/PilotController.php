@@ -19,7 +19,10 @@ class PilotController extends Controller
      */
     public function index()
     {
-  
+        $Pilots = Pilot::paginate(11);
+
+        // $Pilots=Pilot::all(); 
+        return view("Pilot.index",compact('Pilots'));
     }
 
     /**
@@ -64,9 +67,10 @@ class PilotController extends Controller
      * @param  \App\Models\Pilot  $pilot
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pilot $pilot)
+    public function edit(Pilot $Pilot)
     {
-        //
+        return view("Pilot.edit",compact('Pilot'));
+
     }
 
     /**
@@ -76,9 +80,16 @@ class PilotController extends Controller
      * @param  \App\Models\Pilot  $pilot
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pilot $pilot)
+    public function update(PilotRequest $request, Pilot $Pilot)
     {
-        //
+        $formFields = $request->validated();
+
+
+    
+     
+            // $pilot->fill($formFields)->save();
+            $Pilot->update($formFields);
+            return to_route('Pilot.index')->with('success','le profile a ete bien Modifier');
     }
 
     /**
@@ -87,8 +98,10 @@ class PilotController extends Controller
      * @param  \App\Models\Pilot  $pilot
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pilot $pilot)
+    public function destroy(Pilot $Pilot)
     {
-        //
+        $Pilot->delete();
+
+        return to_route('Pilot.index',$Pilot->id)->with('danger','le profile a ete bien supprimer');
     }
 }

@@ -53,6 +53,8 @@
 
 
     <form class="p-11 bg-light" method="POST" action="{{ route('Pilot.store') }}" enctype="multipart/form-data">
+  <h1 class="my-4 mx-auto text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Create des Pilots</h1>
+
         @csrf
         <div class="flex gap-[20px] ">
             <div class="w-2/4 w-full">
